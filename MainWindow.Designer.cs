@@ -29,8 +29,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
-            this.mainView = new DarkUI.Docking.DarkDockPanel();
             this.sep = new DarkUI.Controls.DarkSeparator();
             this.wynnicToggler = new DarkUI.Controls.DarkButton();
             this.gavellianToggler = new DarkUI.Controls.DarkButton();
@@ -45,17 +43,14 @@
             this.cred = new System.Windows.Forms.LinkLabel();
             this.sepBottom = new DarkUI.Controls.DarkSeparator();
             this.cbRestrict = new DarkUI.Controls.DarkCheckBox();
+            this.contextMenu = new DarkUI.Controls.DarkContextMenu();
+            this.itemCheatsheet = new System.Windows.Forms.ToolStripMenuItem();
+            this.itemHistory = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.itemQuit = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnContext = new DarkUI.Controls.DarkButton();
+            this.contextMenu.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // mainView
-            // 
-            this.mainView.Anchor = ((System.Windows.Forms.AnchorStyles) ((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
-            this.mainView.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (60)))), ((int) (((byte) (63)))), ((int) (((byte) (65)))));
-            this.mainView.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
-            this.mainView.Location = new System.Drawing.Point(14, 13);
-            this.mainView.Name = "mainView";
-            this.mainView.Size = new System.Drawing.Size(879, 381);
-            this.mainView.TabIndex = 0;
             // 
             // sep
             // 
@@ -72,24 +67,26 @@
             this.wynnicToggler.Location = new System.Drawing.Point(17, 20);
             this.wynnicToggler.Name = "wynnicToggler";
             this.wynnicToggler.Padding = new System.Windows.Forms.Padding(6, 5, 6, 5);
-            this.wynnicToggler.Size = new System.Drawing.Size(87, 25);
+            this.wynnicToggler.Size = new System.Drawing.Size(80, 25);
             this.wynnicToggler.TabIndex = 2;
+            this.wynnicToggler.Tag = "Wynnic";
             this.wynnicToggler.Text = "Wynnic";
             // 
             // gavellianToggler
             // 
             this.gavellianToggler.Anchor = ((System.Windows.Forms.AnchorStyles) (((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) | System.Windows.Forms.AnchorStyles.Right)));
             this.gavellianToggler.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
-            this.gavellianToggler.Location = new System.Drawing.Point(110, 20);
+            this.gavellianToggler.Location = new System.Drawing.Point(103, 20);
             this.gavellianToggler.Name = "gavellianToggler";
             this.gavellianToggler.Padding = new System.Windows.Forms.Padding(6, 5, 6, 5);
-            this.gavellianToggler.Size = new System.Drawing.Size(99, 25);
+            this.gavellianToggler.Size = new System.Drawing.Size(90, 25);
             this.gavellianToggler.TabIndex = 3;
+            this.gavellianToggler.Tag = "Gavellian";
             this.gavellianToggler.Text = "Gavellian";
             // 
             // textOrig
             // 
-            this.textOrig.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (69)))), ((int) (((byte) (73)))), ((int) (((byte) (74)))));
+            this.textOrig.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (81)))), ((int) (((byte) (84)))), ((int) (((byte) (84)))));
             this.textOrig.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textOrig.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
             this.textOrig.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (220)))), ((int) (((byte) (220)))), ((int) (((byte) (220)))));
@@ -121,7 +118,7 @@
             // 
             // textOutput
             // 
-            this.textOutput.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (69)))), ((int) (((byte) (73)))), ((int) (((byte) (74)))));
+            this.textOutput.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (81)))), ((int) (((byte) (84)))), ((int) (((byte) (84)))));
             this.textOutput.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textOutput.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
             this.textOutput.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (220)))), ((int) (((byte) (220)))), ((int) (((byte) (220)))));
@@ -134,17 +131,18 @@
             // 
             // btnTrans
             // 
-            this.btnTrans.Location = new System.Drawing.Point(810, 20);
+            this.btnTrans.Location = new System.Drawing.Point(785, 20);
             this.btnTrans.Name = "btnTrans";
             this.btnTrans.Padding = new System.Windows.Forms.Padding(5);
-            this.btnTrans.Size = new System.Drawing.Size(85, 25);
+            this.btnTrans.Size = new System.Drawing.Size(105, 25);
             this.btnTrans.TabIndex = 9;
-            this.btnTrans.Text = "Translate";
+            this.btnTrans.Text = "Translate [↵]";
             this.btnTrans.Click += new System.EventHandler(this.btnTrans_Click);
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(15, 450);
+            this.btnClear.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (59)))), ((int) (((byte) (66)))), ((int) (((byte) (82)))));
+            this.btnClear.Location = new System.Drawing.Point(45, 450);
             this.btnClear.Name = "btnClear";
             this.btnClear.Padding = new System.Windows.Forms.Padding(5);
             this.btnClear.Size = new System.Drawing.Size(75, 25);
@@ -154,6 +152,7 @@
             // 
             // copyBtn
             // 
+            this.copyBtn.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
             this.copyBtn.Location = new System.Drawing.Point(760, 450);
             this.copyBtn.Name = "copyBtn";
             this.copyBtn.Padding = new System.Windows.Forms.Padding(5);
@@ -165,7 +164,7 @@
             // langLabel
             // 
             this.langLabel.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (220)))), ((int) (((byte) (220)))), ((int) (((byte) (220)))));
-            this.langLabel.Location = new System.Drawing.Point(215, 25);
+            this.langLabel.Location = new System.Drawing.Point(200, 25);
             this.langLabel.Name = "langLabel";
             this.langLabel.Size = new System.Drawing.Size(175, 15);
             this.langLabel.TabIndex = 12;
@@ -174,13 +173,14 @@
             // cred
             // 
             this.cred.ActiveLinkColor = System.Drawing.Color.FromArgb(((int) (((byte) (191)))), ((int) (((byte) (97)))), ((int) (((byte) (106)))));
+            this.cred.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
             this.cred.LinkColor = System.Drawing.Color.FromArgb(((int) (((byte) (136)))), ((int) (((byte) (192)))), ((int) (((byte) (208)))));
-            this.cred.Location = new System.Drawing.Point(530, 455);
+            this.cred.Location = new System.Drawing.Point(555, 455);
             this.cred.Name = "cred";
-            this.cred.Size = new System.Drawing.Size(225, 15);
+            this.cred.Size = new System.Drawing.Size(200, 15);
             this.cred.TabIndex = 13;
             this.cred.TabStop = true;
-            this.cred.Text = "Made with love by AlphaNecron";
+            this.cred.Text = "Made with ❤ by AlphaNecron";
             this.cred.VisitedLinkColor = System.Drawing.Color.FromArgb(((int) (((byte) (208)))), ((int) (((byte) (135)))), ((int) (((byte) (112)))));
             // 
             // sepBottom
@@ -193,20 +193,76 @@
             // 
             // cbRestrict
             // 
+            this.cbRestrict.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (60)))), ((int) (((byte) (63)))), ((int) (((byte) (65)))));
             this.cbRestrict.Checked = true;
             this.cbRestrict.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbRestrict.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.cbRestrict.Location = new System.Drawing.Point(575, 20);
+            this.cbRestrict.Location = new System.Drawing.Point(550, 20);
             this.cbRestrict.Name = "cbRestrict";
-            this.cbRestrict.Size = new System.Drawing.Size(235, 25);
+            this.cbRestrict.Size = new System.Drawing.Size(225, 25);
             this.cbRestrict.TabIndex = 15;
             this.cbRestrict.Text = "Only accept allowed characters";
+            // 
+            // contextMenu
+            // 
+            this.contextMenu.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (60)))), ((int) (((byte) (63)))), ((int) (((byte) (65)))));
+            this.contextMenu.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.contextMenu.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (220)))), ((int) (((byte) (220)))), ((int) (((byte) (220)))));
+            this.contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {this.itemCheatsheet, this.itemHistory, this.toolStripSeparator1, this.itemQuit});
+            this.contextMenu.Name = "contextMenu";
+            this.contextMenu.Size = new System.Drawing.Size(145, 77);
+            // 
+            // itemCheatsheet
+            // 
+            this.itemCheatsheet.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (60)))), ((int) (((byte) (63)))), ((int) (((byte) (65)))));
+            this.itemCheatsheet.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (220)))), ((int) (((byte) (220)))), ((int) (((byte) (220)))));
+            this.itemCheatsheet.Name = "itemCheatsheet";
+            this.itemCheatsheet.Size = new System.Drawing.Size(144, 22);
+            this.itemCheatsheet.Text = "Cheatsheet";
+            // 
+            // itemHistory
+            // 
+            this.itemHistory.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (60)))), ((int) (((byte) (63)))), ((int) (((byte) (65)))));
+            this.itemHistory.Enabled = false;
+            this.itemHistory.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (220)))), ((int) (((byte) (220)))), ((int) (((byte) (220)))));
+            this.itemHistory.Name = "itemHistory";
+            this.itemHistory.Size = new System.Drawing.Size(144, 22);
+            this.itemHistory.Text = "History";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (60)))), ((int) (((byte) (63)))), ((int) (((byte) (65)))));
+            this.toolStripSeparator1.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (220)))), ((int) (((byte) (220)))), ((int) (((byte) (220)))));
+            this.toolStripSeparator1.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(141, 6);
+            // 
+            // itemQuit
+            // 
+            this.itemQuit.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (60)))), ((int) (((byte) (63)))), ((int) (((byte) (65)))));
+            this.itemQuit.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (220)))), ((int) (((byte) (220)))), ((int) (((byte) (220)))));
+            this.itemQuit.Name = "itemQuit";
+            this.itemQuit.Size = new System.Drawing.Size(144, 22);
+            this.itemQuit.Text = "Quit";
+            // 
+            // btnContext
+            // 
+            this.btnContext.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (59)))), ((int) (((byte) (66)))), ((int) (((byte) (82)))));
+            this.btnContext.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.btnContext.Location = new System.Drawing.Point(15, 450);
+            this.btnContext.Name = "btnContext";
+            this.btnContext.Padding = new System.Windows.Forms.Padding(5);
+            this.btnContext.Size = new System.Drawing.Size(25, 25);
+            this.btnContext.TabIndex = 16;
+            this.btnContext.Text = "⋮";
             // 
             // MainWindow
             // 
             this.AcceptButton = this.btnTrans;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (60)))), ((int) (((byte) (63)))), ((int) (((byte) (65)))));
             this.ClientSize = new System.Drawing.Size(909, 486);
+            this.Controls.Add(this.btnContext);
             this.Controls.Add(this.cbRestrict);
             this.Controls.Add(this.sepBottom);
             this.Controls.Add(this.cred);
@@ -221,17 +277,27 @@
             this.Controls.Add(this.gavellianToggler);
             this.Controls.Add(this.wynnicToggler);
             this.Controls.Add(this.sep);
-            this.Controls.Add(this.mainView);
             this.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
-            this.Icon = ((System.Drawing.Icon) (resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(925, 525);
             this.MinimumSize = new System.Drawing.Size(925, 525);
             this.Name = "MainWindow";
-            this.Text = "Translator";
+            this.Text = "Wynntrans";
+            this.contextMenu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private DarkUI.Controls.DarkButton btnContext;
+
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+
+        private System.Windows.Forms.ToolStripMenuItem itemCheatsheet;
+        private System.Windows.Forms.ToolStripMenuItem itemHistory;
+
+        private System.Windows.Forms.ToolStripMenuItem itemQuit;
+
+        private DarkUI.Controls.DarkContextMenu contextMenu;
 
         private DarkUI.Controls.DarkCheckBox cbRestrict;
 
@@ -261,7 +327,6 @@
 
         private DarkUI.Controls.DarkSeparator sep;
 
-        private DarkUI.Docking.DarkDockPanel mainView;
 
         #endregion
     }

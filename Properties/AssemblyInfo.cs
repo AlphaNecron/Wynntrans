@@ -1,15 +1,14 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("WynnTranslator")]
+[assembly: AssemblyTitle("Wynntrans")]
 [assembly: AssemblyDescription("A tool to convert normal text into Wynnic or Gavellian text.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("AlphaNecron")]
-[assembly: AssemblyProduct("WynnTranslator")]
+[assembly: AssemblyProduct("Wynntrans")]
 [assembly: AssemblyCopyright("Copyright © 2021 AlphaNecron")]
 [assembly: AssemblyTrademark("AlphaNecron")]
 [assembly: AssemblyCulture("")]
@@ -32,5 +31,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("0.1.1")]
-[assembly: AssemblyFileVersion("0.1.1")]
+[assembly: AssemblyVersion("0.2.1")]
+[assembly: AssemblyFileVersion("0.2.1")]

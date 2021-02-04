@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
 using System.Drawing.Text;
 using System.IO;
-using System.Net.Mime;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace WynnicTranslator.Core
@@ -10,14 +10,29 @@ namespace WynnicTranslator.Core
     {
         public static class FontUtils
         {
-            private static PrivateFontCollection _fontCollection = new PrivateFontCollection();
+            private static readonly PrivateFontCollection FontCollection = new PrivateFontCollection();
             public static Font WynnicFont;
-            public static void LoadFont()
+            public static Font FallbackFont;
+
+            public static void Init()
             {
-                _fontCollection.AddFontFile(Path.Combine(
-                    Application.StartupPath, "res", "Wynnic-Regular.otf"));
-                WynnicFont = new Font(_fontCollection.Families[0], 12);
+                FontCollection.AddFontFile(Path.Combine(
+                    App.ResFolder, "Wynnic-Regular.otf"));
+                FontCollection.AddFontFile(Path.Combine(App.ResFolder, "FiraSans-Medium.ttf"));
+                WynnicFont = new Font(FontCollection.Families[1], 11F);
+                FallbackFont = new Font(FontCollection.Families[0], 10.5F);
+                foreach (var font in FontCollection.Families) Logger.Log(font.Name, "FONT");
+                FontCollection.Dispose();
             }
+        }
+
+        public static class App
+        {
+            private static readonly string StartDir = Application.StartupPath;
+
+            private static string StartupDir => Regex.Split(StartDir, "bin")[0].TrimEnd('\\');
+
+            public static string ResFolder => Path.Combine(StartupDir, "res");
         }
     }
 }

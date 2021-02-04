@@ -1,136 +1,72 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
+using static WynnicTranslator.Core.Languages.Translator;
+using static WynnicTranslator.Core.Translator.TransUtils;
 
 namespace WynnicTranslator.Core
 {
     public static class Translator
     {
-        private static readonly char[] BaseLetters = "abcdefghijklmnopqrstuvwxyz".ToCharArray();
-
-        public static partial class Wynnic
+        public static string Translate(Lang lang, string i)
         {
-            private static readonly char[] WynnicLetters = "⒜⒝⒞⒟⒠⒡⒢⒣⒤⒥⒦⒧⒨⒩⒪⒫⒬⒭⒮⒯⒰⒱⒲⒳⒴⒵".ToCharArray();
-            private static readonly char[] WynnicNumbers = "⑴⑵⑶⑷⑸⑹⑺⑻⑼".ToCharArray();
-            private static readonly char[] WynnicAdditionalNumbers = "⑽⑾⑿".ToCharArray();
-            private static readonly char[] WynnicSpecialChars = "０１２".ToCharArray();
-            private static readonly char[] BaseNumbers = "123456789".ToCharArray();
-            private static readonly char[] BaseSpecialChars = ".!?".ToCharArray();
-
-            public static bool CheckForAllowedChar(char i)
+            switch (lang)
             {
-                switch (char.ToLower(i))
+                case Lang.Gavellian:
+                    return Gavellian.Translate(i);
+                default:
+                    return Wynnic.Translate(i);
+            }
+        }
+
+        public static class TransUtils
+        {
+            public enum Lang
+            {
+                Wynnic = 0,
+                Gavellian = 1
+            }
+
+            public static bool CheckForAllowedChar(char i, Lang language)
+            {
+                switch (language)
                 {
-                    case '.':
-                    case '?':
-                    case '!':
-                    case 'a':
-                    case 'b':
-                    case 'c':
-                    case 'd':
-                    case 'e':
-                    case 'f':
-                    case 'g':
-                    case 'h':
-                    case 'i':
-                    case 'j':
-                    case 'k':
-                    case 'l':
-                    case 'm':
-                    case 'n':
-                    case 'o':
-                    case 'p':
-                    case 'q':
-                    case 'r':
-                    case 's':
-                    case 't':
-                    case 'u':
-                    case 'v':
-                    case 'w':
-                    case 'x':
-                    case 'y':
-                    case 'z':
-                    case '0':
-                    case '1':
-                    case '2':
-                    case '3':
-                    case '4':
-                    case '5':
-                    case '6':
-                    case '7':
-                    case '8':
-                    case '9':
-                        return true;
+                    case Lang.Gavellian:
+                        return char.IsLetter(char.ToLower(i));
+                    case Lang.Wynnic:
+                        return char.IsLetter(char.ToLower(i)) || char.IsNumber(i) || i == '?' || i == '.' || i == '!';
                     default:
                         return false;
                 }
             }
+        }
 
-            public static string Translate(string i)
-            {
-                return i.ToLower().Aggregate("", (current, c) => current + AsciiConverter(c));
-            }
+        internal static class Variables
+        {
+            internal static readonly char[] BaseLetters = "abcdefghijklmnopqrstuvwxyz".ToCharArray();
+            internal static readonly char[] WynnicLetters = "⒜⒝⒞⒟⒠⒡⒢⒣⒤⒥⒦⒧⒨⒩⒪⒫⒬⒭⒮⒯⒰⒱⒲⒳⒴⒵".ToCharArray();
 
-            private static char NumberConverter(char i)
-            {
-                return (char) WynnicNumbers[Array.IndexOf(BaseNumbers, i)];
-            }
+            internal static readonly char[] WynnicNumbers = "⑴⑵⑶⑷⑸⑹⑺⑻⑼".ToCharArray();
 
-            private static char SpecialCharConverter(char i)
-            {
-                return (char) WynnicSpecialChars[Array.IndexOf(BaseSpecialChars, i)];
-            }
+            // internal static readonly char[] WynnicAdditionalNumbers = "⑽⑾⑿".ToCharArray();
+            internal static readonly char[] WynnicSpecialChars = "０１２".ToCharArray();
+            internal static readonly char[] BaseNumbers = "123456789".ToCharArray();
+            internal static readonly char[] GavellianLetters = "ⓐⓑⓒⓓⓔⓕⓖⓗⓘⓙⓚⓛⓜⓝⓞⓟⓠⓡⓢⓣⓤⓥⓦⓧⓨⓩ".ToCharArray();
+            internal static readonly char[] BaseSpecialChars = ".!?".ToCharArray();
+        }
 
-            private static char LetterConverter(char i)
+        private static class Wynnic
+        {
+            internal static string Translate(string i)
             {
-                return (char) WynnicLetters[Array.IndexOf(BaseLetters, i)];
-            }
-
-            private static char AsciiConverter(char i)
-            {
-                if (char.IsLetter(i))
-                {
-                    return LetterConverter(i);
-                }
-                else if (char.IsDigit(i))
-                {
-                    return NumberConverter(i);
-                }
-                else if (i == '?' || i == '!' || i == '.')
-                {
-                    return SpecialCharConverter(i);
-                }
-                else
-                {
-                    return i;
-                }
+                return i.ToLower().Aggregate("", (current, c) => current + Converter.Wynnic.AsciiConverter(c));
             }
         }
 
-        public static partial class Gavellian
+        private static class Gavellian
+        {
+            internal static string Translate(string i)
             {
-                private static readonly char[] GavellianLetters = "ⓐⓑⓒⓓⓔⓕⓖⓗⓘⓙⓚⓛⓜⓝⓞⓟⓠⓡⓢⓣⓤⓥⓦⓧⓨⓩ".ToCharArray();
-
-                public static string Translate(string i)
-                {
-                    return i.ToLower().Aggregate("", (current, c) => current + LetterConverter(c));
-                }
-
-                public static bool CheckForAllowedChar(char i)
-                {
-                    return char.IsLetter(char.ToLower(i));
-                }
-
-                private static char LetterConverter(char i)
-                {
-                    if (char.IsLetter(i))
-                    {
-                        return (char) GavellianLetters[Array.IndexOf(BaseLetters, i)];
-                    }
-                    else
-                    {
-                        return i;
-                    }
-                }
+                return i.ToLower().Aggregate("", (current, c) => current + Converter.Gavellian.LetterConverter(c));
             }
         }
+    }
 }

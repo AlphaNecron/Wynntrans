@@ -59,14 +59,5 @@ namespace WynnicTranslator.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string font {
-            get {
-                return ResourceManager.GetString("font", resourceCulture);
-            }
-        }
     }
 }

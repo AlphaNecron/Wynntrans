@@ -2,6 +2,9 @@
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
+    <ApplicationIcon>res\scroll.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{121DBE5D-EA7E-4C4C-BD60-8C61C6B0A3CE}</ProjectGuid>
@@ -50,6 +53,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Logger.cs" />
+    <Compile Include="Core\Languages\Gavellian.cs" />
+    <Compile Include="Core\Languages\Wynnic.cs" />
     <Compile Include="Core\Translator.cs" />
     <Compile Include="Core\Utils.cs" />
     <Compile Include="MainWindow.cs">
@@ -60,6 +66,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SymbolCSWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SymbolCSWindow.Designer.cs">
+      <DependentUpon>SymbolCSWindow.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>
@@ -72,6 +84,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="SymbolCSWindow.resx">
+      <DependentUpon>SymbolCSWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -87,8 +102,27 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="res\FiraSans-Medium.ttf" />
+    <Content Include="res\icons\cprof\alchemism.png" />
+    <Content Include="res\icons\cprof\armouring.png" />
+    <Content Include="res\icons\cprof\cooking.png" />
+    <Content Include="res\icons\cprof\jeweling.png" />
+    <Content Include="res\icons\cprof\scribing.png" />
+    <Content Include="res\icons\cprof\tailoring.png" />
+    <Content Include="res\icons\cprof\weaponsmithing.png" />
+    <Content Include="res\icons\cprof\woodworking.png" />
+    <Content Include="res\icons\gm\craftsman.png" />
+    <Content Include="res\icons\gm\hardcore.png" />
+    <Content Include="res\icons\gm\hunted.png" />
+    <Content Include="res\icons\gm\ironman.png" />
+    <Content Include="res\icons\gprof\farming.png" />
+    <Content Include="res\icons\gprof\fishing.png" />
+    <Content Include="res\icons\gprof\mining.png" />
+    <Content Include="res\icons\gprof\woodcutting.png" />
+    <Content Include="res\scroll.ico" />
     <Content Include="res\wynn.ico" />
     <Content Include="res\wynncraft.ico" />
+    <Content Include="res\Wynnic-Regular.otf" />
     <Content Include="res\Wynnic.ttf" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
