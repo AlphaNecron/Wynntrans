@@ -6,4 +6,4 @@ A simple tool to convert normal texts into Wynnic or Gavellian texts.
 ![2](https://i.imgur.com/pbASggO.gif)  
 
 ## Downloads
-[Wynntrans](https://github.com/AlphaNecron/Wynntrans/releases/tag/v0.1.2)
+[Wynntrans](https://github.com/AlphaNecron/Wynntrans/releases/latest)
