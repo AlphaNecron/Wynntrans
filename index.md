@@ -5,7 +5,7 @@
 - Translator:  
 <img src="https://i.imgur.com/ORgdNJr.png" width="303" height="172">  
 
-- Icon cheatsheet
+- Icon cheatsheet  
 <img src="https://i.imgur.com/pbASggO.gif" width="350" height="184">
 
 ### Todo
